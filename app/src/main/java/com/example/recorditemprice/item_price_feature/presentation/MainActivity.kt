@@ -1,4 +1,4 @@
-package com.example.recorditemprice
+package com.example.recorditemprice.item_price_feature.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
