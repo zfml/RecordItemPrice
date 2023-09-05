@@ -1,9 +1,5 @@
 package com.example.recorditemprice.item_price_feature.domain.repository
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
 import com.example.recorditemprice.item_price_feature.domain.model.Item
 import kotlinx.coroutines.flow.Flow
 
@@ -15,7 +11,7 @@ interface ItemRepository {
 
     suspend fun deleteItem(item: Item)
 
-    suspend fun getItemById(id: Int): Item?
+     fun observeByItemById(id: Int): Flow<Item>
 
     suspend fun findItemByName(search: String): Flow<List<Item>>
 

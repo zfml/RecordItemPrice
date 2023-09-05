@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RecordItemPrice</string>
+
+    <string name="Item_title">Items</string>
+
+    <string name="add_item">Add Item</string>
+    <string name="save_item">Save Item</string>
 </resources>

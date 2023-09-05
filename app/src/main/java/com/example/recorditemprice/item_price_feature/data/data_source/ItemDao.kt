@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import androidx.room.Upsert
 import com.example.recorditemprice.item_price_feature.domain.model.Item
 import kotlinx.coroutines.flow.Flow
 
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 interface ItemDao {
 
     @Query("SELECT * FROM item")
-    fun getAllItems(): Flow<List<Item>>
+     fun getAllItems(): Flow<List<Item>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertItem(item: Item)
@@ -22,10 +21,10 @@ interface ItemDao {
     suspend fun deleteItem(item: Item)
 
     @Query("SELECT * FROM item WHERE id = :id")
-    suspend fun getItemById(id: Int): Item?
+    fun observeByItemById(id: Int): Flow<Item>
 
     @Query("SELECT * From item WHERE name LIKE :search")
-    suspend fun findItemByName(search: String): Flow<List<Item>>
+    fun findItemByName(search: String): Flow<List<Item>>
 
 
 

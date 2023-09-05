@@ -14,7 +14,7 @@ class ItemRepositoryImpl(
 
     override suspend fun deleteItem(item: Item) = dao.deleteItem(item)
 
-    override suspend fun getItemById(id: Int): Item? = dao.getItemById(id)
+    override  fun observeByItemById(id: Int): Flow<Item> = dao.observeByItemById(id)
 
     override suspend fun findItemByName(search: String): Flow<List<Item>> = dao.findItemByName(search)
 }
