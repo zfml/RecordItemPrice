@@ -43,16 +43,14 @@ class AddEditItemViewModel @Inject constructor(
     }
 
     fun saveItem() {
-
-        if(invalidInput()) {
             viewModelScope.launch {
                 userCases.addItemUseCase(itemUiState.itemDetail.toItem())
-            }
+
         }
 
     }
 
-    private fun invalidInput(itemDetail: ItemDetail = itemUiState.itemDetail): Boolean {
+     fun invalidInput(itemDetail: ItemDetail = itemUiState.itemDetail):Boolean {
         return  with(itemDetail) {
             name.isNotBlank() && price.isNotBlank()
         }

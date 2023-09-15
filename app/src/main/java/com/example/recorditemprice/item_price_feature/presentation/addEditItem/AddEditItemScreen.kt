@@ -46,7 +46,7 @@ fun AddEditItemScreen(
             TopAppBar(
                 title = {
                     Text(
-                    text = ""
+                    text = if(viewModel.itemUiState.itemDetail.id != 0) "Edit Item" else "Add Item"
                 )
                 },
                 navigationIcon = {
@@ -63,8 +63,11 @@ fun AddEditItemScreen(
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                viewModel.saveItem()
-                navigateToItemsScreen()
+                if(viewModel.invalidInput()) {
+                    viewModel.saveItem()
+                    navigateToItemsScreen()
+                }
+
             }) {
                 Icon(
                 painter = painterResource(id = R.drawable.baseline_save_24),
@@ -106,6 +109,11 @@ fun AddEditItemContent(
             value = itemDetail.name,
             onValueChange = {onItemValueChange(itemDetail.copy(name = it))},
             singleLine = true,
+            label = {
+                Text(
+                    text = "Item Name"
+                )
+            }
         )
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
@@ -113,6 +121,9 @@ fun AddEditItemContent(
             onValueChange = {onItemValueChange(itemDetail.copy(price = it))},
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             singleLine = true,
+            label = {
+                Text(text = "Item Price")
+            }
         )
 
     }
